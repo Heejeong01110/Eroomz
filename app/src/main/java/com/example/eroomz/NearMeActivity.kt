@@ -90,7 +90,9 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
 
             }
         }
-
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         btn_navi.setOnClickListener{
             layout_drawer.openDrawer(GravityCompat.START)  //START = LEFT
@@ -100,8 +102,6 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()
-
-
     }
     //상세정보
     private inner class SlidingPageAnimationListener : Animation.AnimationListener {
