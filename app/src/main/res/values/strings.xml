@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Eroomz</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="KakaoLogin">Button</string>
+    <string name="kakaologin">KakaoLogin</string>
+    <string name="loginstatus">LoginStatus</string>
+    <string name="try_it_out">Try it out!</string>
+    <string name="textview">TextView</string>
+    <string name="hello_this_is_newactivity">HELLO THIS IS NEWACTIVITY</string>
+    <string name="nearMe">내주변매물</string>
+    <string name="nearUniv">대학주변매물</string>
+    <string name="nearSubway">지하철주변매물</string>
+    <string name="lat">lat</string>
+    <string name="lng">lng</string>
+    <string name="todo">TODO</string>
+    <string name="information">Button</string>
+
+
+</resources>

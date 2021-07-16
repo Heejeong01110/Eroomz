@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/facilities"
+            android:icon="@drawable/ic_baseline_arrow_right_24"
+            android:title="편의시설"/>
+
+
+        <item android:id="@+id/commuting_money"
+            android:icon="@drawable/ic_baseline_arrow_right_24"
+            android:title="통근비용"/>
+
+        <item android:id="@+id/cost"
+            android:icon="@drawable/ic_baseline_arrow_right_24"
+            android:title="월세/전세"/>
+
+    </group>
+
+
+
+
+
+</menu>

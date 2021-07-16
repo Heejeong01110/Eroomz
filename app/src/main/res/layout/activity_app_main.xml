@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/loginCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.866" />
+
+    <ImageButton
+        android:id="@+id/nearSubway"
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/nearSubway"
+        app:layout_constraintEnd_toEndOf="@+id/nearMe"
+        app:layout_constraintTop_toBottomOf="@+id/nearMe"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/nearUniv"
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/nearUniv"
+        app:layout_constraintEnd_toStartOf="@+id/nearSubway"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nearMe"
+        app:layout_constraintTop_toBottomOf="@+id/nearMe"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/nearMe"
+        android:layout_width="345dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/nearMe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.137"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
