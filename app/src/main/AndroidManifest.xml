@@ -44,7 +44,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDLgyLjYPL2W24Yo7WctgF6gAG9RqPS4YY" />
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".NearUnivActivity"
@@ -66,7 +66,7 @@
                 <!-- 우리껀 https://developers.kakao.com/console/app/527267 여기서 네이티브 앱 키로 가져오면 돼 -->
                 <data
                     android:host="oauth"
-                    android:scheme="kakaoa0f6efe41c7cb82313b180e9454c51ae" />
+                    android:scheme="kakao${KAKAO_API_KEY}" />
             </intent-filter>
         </activity>
     </application>
