@@ -9,6 +9,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eroomz.NearMeActivity
@@ -25,19 +26,15 @@ class MainAppActivity  : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_main)
-        // Get the Intent that started this activity and extract the string
-        // EXTRA_LOGIN_CONFIRM_TEXT is the key string that links the new activity to
-        // the one activity that started the new activity
         val loginConfirmation = intent.getStringExtra(EXTRA_LOGIN_CONFIRM_TEXT)
-
-        val loginActionResult = findViewById<TextView>(R.id.loginCheck).apply{
-            text = loginConfirmation
-        }
-
+        this.supportActionBar?.hide()
         // 사용자 정보 요청 (기본)
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
+                val loginActionResult = findViewById<TextView>(R.id.loginCheck).apply{
+                    text = "웰컴, 어서와요!"
+                }
             }
             else if (user != null) {
                 Log.i("TAG", "사용자 정보 요청 성공" +
@@ -45,20 +42,24 @@ class MainAppActivity  : AppCompatActivity(){
                         "\n이메일: ${user.kakaoAccount?.email}" +
                         "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                         "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                val loginActionResult = findViewById<TextView>(R.id.loginCheck).apply{
+                    text = "웰컴! ${user.kakaoAccount?.profile?.nickname} 님"
+                }
             }
         }
+
+
+
         nearMe()
         nearUniv()
     }
 
     fun runNearMeActivity(view: View){
-        val intent = Intent(this, NearMeActivity::class.java).apply{
-        }
+        val intent = Intent(this, NearMeActivity::class.java)
         startActivity(intent)
     }
     fun runNearUnivActivity(view: View){
-        val intent = Intent(this, NearUnivActivity::class.java).apply{
-        }
+        val intent = Intent(this, NearUnivActivity::class.java)
         startActivity(intent)
     }
     private fun nearMe(){

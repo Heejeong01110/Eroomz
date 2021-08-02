@@ -22,18 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Splash Screen
-        //이부분 오류나서 막아뒀음 -heejeong
-
         if(!Splashy_Confirm) {
             setSplashy()
         }
 
-
-        // 카카오에서 할당 받을 앱키를 입력 하세요.
-        // 우리껀 https://developers.kakao.com/console/app/527267 여기서 네이티브 앱 키로 가져오면 돼
-        // 처음 하는거면 https://developers.kakao.com/docs/latest/ko/getting-started/sdk-android-v1#key-hash 참고해서 키 해시 만들어서
-        // https://developers.kakao.com/console/app/527267/config/platform 여기에 키 해시 수정 등록 하고 하면 될 거야
         KakaoSdk.init(this, "a0f6efe41c7cb82313b180e9454c51ae")
         startLogin()
     }
@@ -51,11 +43,11 @@ class MainActivity : AppCompatActivity() {
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
                     Log.e("TAG", "로그인 실패", error)
-                    this.loginConfirmText = "login Failed, maybe click Try it out button?"
+                    this.loginConfirmText = "로그인에 실패 했어요 ㅠㅠ"
                     textView.text = this.loginConfirmText
                 } else if (token != null) {
                     Log.i("TAG", "로그인 성공 ${token.accessToken}")
-                    this.loginConfirmText = "login Success ${token.accessToken}"
+                    this.loginConfirmText = "${token.accessToken}"
                     textView.text = this.loginConfirmText
                     this.loginSuccess = true
                     this.runMainAppActivity(button)

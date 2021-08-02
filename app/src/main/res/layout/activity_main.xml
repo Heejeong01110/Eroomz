@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?actionBarSize"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button"
-        android:layout_width="173dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bmjua"
+        android:padding="20dp"
         android:text="@string/kakaologin"
         android:textColor="@color/black"
+        android:textSize="30dp"
         app:backgroundTint="#FFEB3B"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.345" />
 
     <TextView
         android:id="@+id/textView"
@@ -34,6 +39,8 @@
         android:layout_height="wrap_content"
         android:onClick="runMainAppActivity"
         android:text="@string/try_it_out"
+        android:fontFamily="@font/bmjua"
+        android:textSize="30dp"
         app:backgroundTint="#D77986CB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

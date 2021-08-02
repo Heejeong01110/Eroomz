@@ -70,7 +70,6 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.near_me_activity)
-
         Upanim = AnimationUtils.loadAnimation(this, R.anim.translate_up)
         Downanim = AnimationUtils.loadAnimation(this,R.anim.translate_down)
 
@@ -78,10 +77,9 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
         Downanim.setAnimationListener(SlidingPageAnimationListener())
 
         //상세정보
-        information.setOnClickListener(){
+        information.setOnClickListener {
             if (isPageOpen) {
                 informationPage.startAnimation(Downanim)
-
             }
             else{
                 informationPage.visibility = View.VISIBLE
@@ -101,7 +99,6 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
         naviView.setNavigationItemSelectedListener (this) //네비게이션 메뉴 아이템에 클릭 속성 부여
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        getLastLocation()
     }
     //상세정보
     private inner class SlidingPageAnimationListener : Animation.AnimationListener {
@@ -126,7 +123,7 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
         override fun onAnimationRepeat(animation: Animation?) {
         }
     }
-//상세정보 끝
+    //상세정보 끝
 
     override fun onMapReady(googleMap: GoogleMap) {
         googleMap.addMarker(
@@ -135,93 +132,5 @@ class NearMeActivity : AppCompatActivity(R.layout.activity_app_main), OnMapReady
                 .title(lat.toString())
         )
     }
-
-
-    private fun getLastLocation(){
-        if(checkPermission()){
-            if(isLocationEnabled()){
-                fusedLocationProviderClient.lastLocation.addOnCompleteListener{ task ->
-                    var location: Location? = task.result
-                    Log.i("Location Log", location.toString())
-                    if(location == null){
-                        Log.i("TAG", "null called")
-                        getNewLocation()
-                    }else{
-                        Log.i("TAG", location.latitude.toString())
-
-                        lat = location.latitude.toFloat()
-                        lng = location.longitude.toFloat()
-                        latText.text = lat.toString()
-                        lngText.text = lng.toString()
-                        val mapFragment = supportFragmentManager
-                            .findFragmentById(R.id.map) as SupportMapFragment
-                        mapFragment.getMapAsync(this)
-                    }
-                }
-            }else{
-                Toast.makeText(this,"Please Enable your location service", Toast.LENGTH_SHORT).show()
-            }
-        }else{
-            requestPermission()
-        }
-        Log.i("TAG", lat.toString())
-        Log.i("TAG", lng.toString())
-
-    }
-
-
-    private val locationCallback = object : LocationCallback(){
-        override fun onLocationResult(p0: LocationResult?) {
-            var lastLocation = p0?.lastLocation
-            lat = lastLocation?.latitude?.toFloat()!!
-            lng = lastLocation?.longitude?.toFloat()
-        }
-    }
-
-    private fun checkPermission(): Boolean{
-        if(
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-        ) { return true }
-
-        return false
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getNewLocation(){
-        locationRequest = LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 0
-        locationRequest.fastestInterval = 0
-        locationRequest.numUpdates = 2
-
-        fusedLocationProviderClient.requestLocationUpdates(
-            locationRequest,locationCallback, Looper.myLooper()
-        )
-
-    }
-
-    private fun requestPermission(){
-        ActivityCompat.requestPermissions(this,
-            arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION),PERMISSION_ID)
-    }
-
-    private fun isLocationEnabled(): Boolean{
-        var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-            LocationManager.NETWORK_PROVIDER)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if(requestCode == PERMISSION_ID){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Log.i("Debug:", "You have location Permission")
-                Log.d("Debug:", "You have location Permission")
-            }
-        }
-    }
-
-
 }
 
